@@ -32,3 +32,6 @@
     - Translation in various languages
     - Customizing tone of the answer
     - Text generation (with formatting instructions)
+- Show conversation history in Cosmos DB
+
+![Cosmos DB history!](cosmos_db_message.png)
