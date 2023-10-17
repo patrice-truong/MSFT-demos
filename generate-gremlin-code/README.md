@@ -23,9 +23,10 @@ This demo shows how we can generate Gremlin code (in addition to SQL, Python...)
 
 ![Cosmos DB for Apache Gremlin Serverless](cosmosdb_gremlin-serverless.png)
 
-- Populate the database with the following script
 
 ## Demo script
 - Run demo: <code>streamlit run app.py</code>
+- (if necessary) populate the graph database
+- pick a natural language query and click on the Query button to generate the Gremlin code
 
  
