@@ -1,5 +1,5 @@
 # Fraud detection with Azure Computer Vision and Qdrant
-![Illustration!](demo_illustration.png)
+![Illustration!](fraud_detection.png)
 ## Features
 - This demo shows how embeddings can be created from images (not only text!)
 - Vector representations are stored in Qdrant

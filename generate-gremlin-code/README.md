@@ -1,5 +1,5 @@
 # Generate Gremlin code using Azure OpenAI
-![Illustration!](demo_illustration.png)
+![Illustration!](generate_gremlin_code.png)
 ## Features
 This demo shows how we can generate Gremlin code (in addition to SQL, Python...) using Azure OpenAI "GPT 3.5 turbo instruct". It uses a Cosmos DB for Apache Gremlin database to store the demo graph (parts mounted in a motor)
 

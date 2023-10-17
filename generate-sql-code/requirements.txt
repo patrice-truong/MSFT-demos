@@ -1,0 +1,10 @@
+streamlit
+openai==0.27.2
+python-dotenv==0.21.0
+tiktoken==0.2.0
+langchain
+docx2txt
+sqlmodel
+pymssql
+sqlalchemy==1.4.31
+uvicorn

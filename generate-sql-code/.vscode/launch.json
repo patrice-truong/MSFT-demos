@@ -1,0 +1,25 @@
+
+
+
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: Debugging in Visual Studio Code
+    "version": "0.2.0",
+    "configurations": [
+    {
+    "name": "Debug Streamlit application",
+    "type": "python",
+    "request": "launch",
+    "program": "${workspaceFolder}\\.venv\\Scripts\\streamlit.exe",
+    "args": [
+        "run",
+        "app.py",
+        "--server.port",
+        "8501"
+    ],
+    // "console": "externalTerminal",
+    "justMyCode": true
+    }
+    ]
+}

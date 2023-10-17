@@ -1,5 +1,5 @@
 # Chat on a video
-![Illustration!](app_illustration.png)
+![Illustration!](chat_on_video.png)
 ## Features
 - Video to audio, using moviepy
 - Audio to text, using Azure OpenAI Whisper
