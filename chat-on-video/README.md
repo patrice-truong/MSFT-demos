@@ -9,7 +9,7 @@
 
 ## Requirements
 - Streamlit application
-- Tested only with Python 3.19. May not work with Python 3.11+ !
+- Tested only with Python 3.10.9. May not work with Python 3.11+ !
 - Azure OpenAI account
 - Speech recognition account
 - Azure Cosmos DB for NoSQL account
