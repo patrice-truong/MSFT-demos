@@ -1,0 +1,10 @@
+streamlit
+openai==0.27.2
+python-dotenv==0.21.0
+tiktoken==0.2.0
+langchain
+docx2txt
+azure-cosmos
+azure-storage-blob==12.14.1
+pymongo==3.11.3
+dnspython
