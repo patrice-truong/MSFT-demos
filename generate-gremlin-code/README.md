@@ -20,6 +20,7 @@ This demo shows how we can generate Gremlin code (in addition to SQL, Python...)
 
 - Copy .env template to .env
 - Replace keys with your own values
+- This demo uses the model text-davinci-003. If you would like to use another model, change the value in your .env file
 
 ![Cosmos DB for Apache Gremlin Serverless](cosmosdb_gremlin-serverless.png)
 
