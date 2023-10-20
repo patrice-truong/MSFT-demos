@@ -430,7 +430,7 @@ def vectorize(transcript_text):
     documents = text_splitter.split_text(text=transcript_text)
 
     # Vectorize the documents and create vectorstore
-    embeddings = OpenAIEmbeddings(engine="text-embedding-ada-002", chunk_size=1) 
+    embeddings = OpenAIEmbeddings(engine=os.getenv("OPENAI_ADA_EMBEDDING_DEPLOYMENT_NAME"), chunk_size=1) 
     vector_store = FAISS.from_texts(documents, embedding=embeddings)
     return vector_store
 
@@ -454,7 +454,7 @@ Your task is to analyze the transcript of a video and answer questions, using th
     qa_prompt = ChatPromptTemplate.from_messages( messages )
     
     llm = AzureChatOpenAI(
-        deployment_name="gpt-35-turbo", 
+        deployment_name=os.getenv("OPENAI_ENGINE_MODEL_NAME"), 
         temperature=0, 
         max_tokens=1000)
     
