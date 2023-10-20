@@ -1,0 +1,8 @@
+OPENAI_API_BASE=https://xxxxxxxx.openai.azure.com/
+OPENAI_API_KEY=
+OPENAI_API_TYPE=Azure
+OPENAI_API_VERSION=2023-05-15
+OPENAI_API_MODEL=gpt-35-turbo
+
+BING_SUBSCRIPTION_KEY=xxxxxxxx
+BING_SEARCH_URL=https://api.bing.microsoft.com/v7.0/search
