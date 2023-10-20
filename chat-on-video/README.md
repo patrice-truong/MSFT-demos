@@ -18,6 +18,14 @@
 - Create virtual environment: <code>python -m venv .venv</code>
 - Activate virtual ennvironment: <code>.venv\scripts\activate</code>
 - Install required libraries: <code>pip install -r requirements.txt</code>
+
+- In your Cosmos DB for NoSQL account:
+    - Create a database called "videos"
+    - In that database, create a container called "history". 
+    - Specify "/ChatSessionId" as the partition key
+
+![Illustration!](video_history.png)
+
 - Copy .env template to .env
 - Replace keys with your own values
 
