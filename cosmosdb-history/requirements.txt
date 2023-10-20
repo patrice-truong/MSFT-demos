@@ -1,0 +1,6 @@
+langchain
+openai
+pypdf
+streamlit
+python-dotenv
+azure-cosmos
