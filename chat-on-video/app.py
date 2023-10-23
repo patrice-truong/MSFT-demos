@@ -149,10 +149,10 @@ Generate a fun blog post for LinkedIn.
     ]
 
 def video_to_audio(video_file):
-    audio_file = video_file.name.replace(".mp4", ".wav").replace(".mkv", ".wav")
+    audio_file = video_file.replace(".mp4", ".wav").replace(".mkv", ".wav")
 
     #load the video clip 
-    video = VideoFileClip(video_file.name)
+    video = VideoFileClip(video_file)
 
     #extract the audio from the video
     audio = video.audio
@@ -204,7 +204,7 @@ def audio_to_text_whisper(sound_file):
                 "%H:%M:%S.{}".format(str(elapsed % 1)[2:])[:15], time.gmtime(elapsed)
             )
         )
-        return transcription_data
+        return transcription_data["text"]
     else:
         print(f"Error: {response.status_code}")
         
@@ -509,8 +509,17 @@ def main():
     # Initialize Streamlit chat UI
     init_state()
 
-    if video_file:
-        video_file = open(video_file.name, 'rb')
+    if video_file is not None:
+
+        if not os.path.exists("temp"):
+            os.makedirs("temp")
+            
+        temp_video_file = os.path.join("temp", video_file.name)
+        with open(temp_video_file, "wb") as f:
+            f.write(video_file.getbuffer())
+
+
+        video_file = open(temp_video_file, 'rb')
         video_bytes = video_file.read()
         st.session_state.video_file = video_file
 
@@ -523,7 +532,7 @@ def main():
 
             # convert video to audio
             st.write("### Extracting audio...")
-            audio_file_name = video_to_audio(video_file)
+            audio_file_name = video_to_audio(temp_video_file)
             st.write(f"Audio file saved: '{audio_file_name}' !")
             audio_file = open(audio_file_name, 'rb')
             audio_bytes = audio_file.read()
@@ -539,7 +548,7 @@ def main():
 
             else:       
                 st.write("### Creating transcript...")            
-                transcript, transcript_text = audio_to_text_whisper(audio_file_name)   
+                transcript_text = audio_to_text_whisper(audio_file_name)   
                 st.session_state.transcript_text = transcript_text
 
             st.write(st.session_state.transcript_text)
