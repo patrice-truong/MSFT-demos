@@ -1,4 +1,5 @@
 import sys
+import streamlit as st
 from typing import Any, Dict, List, Optional, Union
 from langchain.callbacks.base import BaseCallbackHandler
 from langchain.schema import AgentAction, AgentFinish, LLMResult
@@ -28,5 +29,6 @@ class StdOutCallbackHandler(BaseCallbackHandler):
 
     def on_agent_action(self, action: AgentAction, **kwargs: Any) -> Any:
         sys.stdout.write(f"{action.log}\n")
+        st.write(f"Action: {action.log}\n")
                
             

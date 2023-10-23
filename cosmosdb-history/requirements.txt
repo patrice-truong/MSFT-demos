@@ -4,3 +4,4 @@ pypdf
 streamlit
 python-dotenv
 azure-cosmos
+msal_streamlit_authentication
