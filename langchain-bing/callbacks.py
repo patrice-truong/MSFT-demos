@@ -1,3 +1,4 @@
+import streamlit as st
 import sys
 from typing import Any, Dict, List, Optional, Union
 from langchain.callbacks.base import BaseCallbackHandler
@@ -25,8 +26,10 @@ class StdOutCallbackHandler(BaseCallbackHandler):
 
     def on_tool_start(self, serialized: Dict[str, Any], input_str: str, **kwargs: Any) -> Any:
         sys.stdout.write(f"Tool: {serialized['name']}\n")
+        st.write(f"Tool: {serialized['name']}\n")
 
     def on_agent_action(self, action: AgentAction, **kwargs: Any) -> Any:
         sys.stdout.write(f"{action.log}\n")
+        st.write(f"Action: {action.log}\n")
                
             

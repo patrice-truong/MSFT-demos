@@ -57,9 +57,11 @@ if prompt := st.chat_input():
     st.chat_message("human").markdown(prompt)
     msgs.add_user_message(prompt)
 
-    response = bing_search.run(prompt)
-    st.chat_message("ai").markdown(response, unsafe_allow_html=True)
-    msgs.add_ai_message(response)
+    with st.spinner("Generating response..."):
+        response = bing_search.run(prompt)
+        
+        st.chat_message("ai").markdown(response, unsafe_allow_html=True)
+        msgs.add_ai_message(response)
 
 # Draw the messages at the end, so newly generated ones show up immediately
 with view_messages:
