@@ -1,0 +1,14 @@
+openai
+azure-cognitiveservices-speech 
+python-dotenv
+langchain
+azure-search-documents==11.4.0b9
+azure.identity
+tiktoken
+streamlit
+ipykernel
+opencv-python
+seaborn
+plotly
+umap-learn
+nbformat

@@ -1,0 +1,15 @@
+OPENAI_API_BASE = "https://[REPLACE_ME].openai.azure.com/"
+OPENAI_API_KEY = "[REPLACE_ME]"
+OPENAI_API_VERSION = "2023-05-15"
+
+OPENAI_ADA_EMBEDDING_DEPLOYMENT_NAME = "text-embedding-ada-002"
+OPENAI_ADA_EMBEDDING_MODEL_NAME = "text-embedding-ada-002"
+OPENAI_ENGINE_MODEL_NAME = "gpt-35-turbo"
+
+SPEECH_KEY=[REPLACE_ME]
+SPEECH_REGION=francecentral
+
+AZURE_COSMOSDB_ENDPOINT = "https://[REPLACE_ME].documents.azure.com:443/"
+AZURE_COSMOSDB_NAME = "videos"
+AZURE_COSMOSDB_CONTAINER_NAME = "history"
+AZURE_COSMOSDB_CONNECTION_STRING = "AccountEndpoint=https://[REPLACE_ME].documents.azure.com:443/;AccountKey=[REPLACE_ME]"
