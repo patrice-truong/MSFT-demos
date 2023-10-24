@@ -19,6 +19,7 @@
 - Activate virtual ennvironment: <code>.venv\scripts\activate</code>
 - Install required libraries: <code>pip install -r requirements.txt</code>
 
+- Create an app registration in the Azure portal
 - Create a Bing resource in the Azure portal
 
 ![Illustration!](bing_resource.png)

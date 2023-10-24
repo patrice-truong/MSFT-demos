@@ -11,3 +11,7 @@ AZURE_COSMOSDB_ENDPOINT = "https://xxxxxxxx.documents.azure.com:443/"
 AZURE_COSMOSDB_NAME = "bing_chat_db"
 AZURE_COSMOSDB_CONTAINER_NAME = "history"
 AZURE_COSMOSDB_CONNECTION_STRING = "AccountEndpoint=https://xxxxxxxx.documents.azure.com:443/;AccountKey=xxxxxxxx;"
+
+# Azure App registration client id
+APP_CLIENT_ID=xxxxxxxx
+TENANT_ID=xxxxxxxx
