@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 
 from prompts import CUSTOM_CHATBOT_PREFIX, CUSTOM_CHATBOT_SUFFIX
 from utils import get_token
+from base64 import b64decode
 
 load_dotenv()
 
@@ -22,7 +23,6 @@ openai.api_base = os.getenv("OPENAI_API_BASE")
 openai.api_type  = os.getenv("OPENAI_API_TYPE")
 openai.api_version = os.getenv("OPENAI_API_VERSION")
 
-
 st.set_page_config(page_title="Bing Chat with Cosmos DB history", page_icon="📖")
 st.title("Bing Chat with Cosmos DB history")
 
@@ -30,6 +30,18 @@ st.title("Bing Chat with Cosmos DB history")
 An example of using the Bing search API with Langchain.
 Conversation history is stored in Cosmos DB for NoSQL database.
 """
+
+cosmos_endpoint = f"https://{os.getenv('AZURE_COSMOSDB_ACCOUNT')}.documents.azure.com:443/"
+cosmos_key = os.getenv('AZURE_COSMOSDB_KEY')
+cosmos_database = os.getenv('AZURE_COSMOSDB_NAME')
+cosmos_container = os.getenv('AZURE_COSMOSDB_CONTAINER_NAME')
+cosmos_connection_string = f"AccountEndpoint={cosmos_endpoint};AccountKey={cosmos_key}"
+
+# st.write(cosmos_endpoint )
+# st.write(cosmos_key)
+# st.write(cosmos_database )
+# st.write(cosmos_container)
+# st.write(cosmos_connection_string)
 
 if "langchain_messages" not in st.session_state:
     st.session_state.langchain_messages = []
@@ -41,10 +53,10 @@ if login_token is not None:
     st.write(f"Welcome, {username} ({email}) !")
 
     cosmos = CosmosDBChatMessageHistory(
-        cosmos_endpoint=os.environ['AZURE_COSMOSDB_ENDPOINT'],
-        cosmos_database=os.environ['AZURE_COSMOSDB_NAME'],
-        cosmos_container=os.environ['AZURE_COSMOSDB_CONTAINER_NAME'],
-        connection_string=os.environ['AZURE_COSMOSDB_CONNECTION_STRING'],
+        cosmos_endpoint=cosmos_endpoint,
+        cosmos_database=cosmos_database,
+        cosmos_container=cosmos_container,
+        connection_string=cosmos_connection_string,
         session_id="Agent-Test-Session" + str(random.randint(1, 1000)),
         user_id= email
         )
