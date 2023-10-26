@@ -3,7 +3,7 @@ import os, tiktoken, json, csv, time, openai
 import streamlit as st
 from dotenv import load_dotenv
 
-from cosmosdb_mongodb import count_products, drop_and_create_mongo_objects, insert_many, insert_one, similar
+from cosmosdb_mongodb import count_products, create_mongo_objects, insert_many, insert_one, insert_one_if_not_exists, similar
 from product import Product
 
 BATCH_SIZE = 100
@@ -82,7 +82,7 @@ if st.button("Load products into Cosmos DB for MongoDB"):
     IMAGE_BASE = f"https://{os.getenv('BLOB_ACCOUNT_NAME')}.blob.core.windows.net/{os.getenv('BLOB_CONTAINER_NAME')}/assets"
     products = []
 
-    drop_and_create_mongo_objects("productsDb", "products_1536", "vectorIndex1536")
+    create_mongo_objects("productsDb", "products_1536", "vectorIndex1536")
     
     # Open the CSV file
     with open(products_file, 'r', encoding="utf-8") as file:
@@ -99,7 +99,7 @@ if st.button("Load products into Cosmos DB for MongoDB"):
             print(product.article_id)
             embeddings = get_embedding(product.to_json())
             product.embedding = embeddings
-            insert_one(product.__dict__)
+            insert_one_if_not_exists(product.__dict__)
 
         st.write("Finished !")
             
