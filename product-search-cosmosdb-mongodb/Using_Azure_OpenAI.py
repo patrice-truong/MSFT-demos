@@ -14,6 +14,7 @@ load_dotenv()
 openai.api_base = os.getenv("OPENAI_API_BASE")
 openai.api_version = os.getenv("OPENAI_API_VERSION")
 openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_type = os.getenv("OPENAI_API_TYPE")
 
 st.set_page_config(layout="wide")
 
