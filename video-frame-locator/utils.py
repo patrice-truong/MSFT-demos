@@ -6,6 +6,7 @@ import math
 import json
 import requests
 import pandas as pd
+import streamlit as st
 from tqdm import tqdm
 
 from dotenv import load_dotenv
@@ -15,7 +16,14 @@ load_dotenv()
 key = os.getenv('COMPUTER_VISION_SUBSCRIPTION_KEY')
 endpoint = os.getenv("COMPUTER_VISION_ENDPOINT")
 
-
+def display_env():
+    """
+    Get a list of all variables from the .env file and display them
+    """    
+    env_variables = os.environ
+    for key, value in env_variables.items():
+        st.write(f"{key}: {value}")
+    
 def image_embedding_batch(image_file):
     """
     Embedding image using Azure Computer Vision 4 Florence
