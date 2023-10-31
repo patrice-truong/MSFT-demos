@@ -498,61 +498,70 @@ def main():
     """,unsafe_allow_html=True)    
     col1, col2 = st.columns([1,2])
     with col1:
-        st.image("laposte.png", width=100)
+        st.image("microsoft.png", width=100)
     with col2:
         st.write(f"## {title}")    
 
     
     video_file = st.file_uploader("Upload a video", type=['mp4', 'mkv'])
     audio_file = None
-
-    # Initialize Streamlit chat UI
+    if not os.path.exists("temp"):
+        os.makedirs("temp")
+    
     init_state()
 
-    if video_file is not None:
+    if video_file is None:
 
-        if not os.path.exists("temp"):
-            os.makedirs("temp")
-            
+        default_video_file = "Quelle application pour envoyer un colis.mp4"
+        video_file = open(default_video_file, 'rb')    
+        video_bytes = video_file.read()
+        
+        # copy data to temp file
+        temp_video_file = os.path.join("temp", default_video_file)
+        with open(temp_video_file, "wb") as f:
+           f.write(video_bytes)
+        video_file = open(temp_video_file, 'rb')
+                                 
+
+    else:
         temp_video_file = os.path.join("temp", video_file.name)
         with open(temp_video_file, "wb") as f:
             f.write(video_file.getbuffer())
-
-
         video_file = open(temp_video_file, 'rb')
-        video_bytes = video_file.read()
-        st.session_state.video_file = video_file
 
-        # Afficher le player video
-        st.video(video_bytes)
+    video_bytes = video_file.read()
+    st.session_state.video_file = video_file
 
-        if st.button("Create transcript"):
+    # Afficher le player video
+    st.video(video_bytes)
 
-            transcript_file = video_file.name.replace(".mp4", ".txt").replace(".mkv", ".txt")
+    if st.button("Create transcript"):
 
-            # convert video to audio
-            st.write("### Extracting audio...")
-            audio_file_name = video_to_audio(temp_video_file)
-            st.write(f"Audio file saved: '{audio_file_name}' !")
-            audio_file = open(audio_file_name, 'rb')
-            audio_bytes = audio_file.read()
+        transcript_file = video_file.name.replace(".mp4", ".txt").replace(".mkv", ".txt")
 
-            # Afficher le player audio
-            st.audio(audio_bytes, format='audio/wav')
+        # convert video to audio
+        st.write("### Extracting audio...")
+        audio_file_name = video_to_audio(temp_video_file)
+        st.write(f"Audio file saved: '{audio_file_name}' !")
+        audio_file = open(audio_file_name, 'rb')
+        audio_bytes = audio_file.read()
 
-            # test if transcript file exists
-            if os.path.exists(transcript_file):
-                # read transcript file
-                with open(transcript_file, "r") as file:
-                    st.session_state.transcript_text = file.read()
+        # Afficher le player audio
+        st.audio(audio_bytes, format='audio/wav')
 
-            else:       
-                st.write("### Creating transcript...")            
-                transcript_text = audio_to_text_whisper(audio_file_name)   
-                st.session_state.transcript_text = transcript_text
+        # test if transcript file exists
+        if os.path.exists(transcript_file):
+            # read transcript file
+            with open(transcript_file, "r") as file:
+                st.session_state.transcript_text = file.read()
 
-            st.write(st.session_state.transcript_text)
-            st.session_state.vector_store = vectorize(st.session_state.transcript_text)
+        else:       
+            st.write("### Creating transcript...")            
+            transcript_text = audio_to_text_whisper(audio_file_name)   
+            st.session_state.transcript_text = transcript_text
+
+        st.write(st.session_state.transcript_text)
+        st.session_state.vector_store = vectorize(st.session_state.transcript_text)
 
     if st.session_state.transcript_text:
         st.json(queries, expanded = False)
