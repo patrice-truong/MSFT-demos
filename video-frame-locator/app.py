@@ -53,7 +53,7 @@ def display_env():
 
 if __name__ == "__main__":
     title = "Video frame locator with Florence"
-    st.set_page_config(page_title=title, layout="wide")
+    st.set_page_config(page_title=title)
     st.write(f"## {title}")    
 
     st.write("This demo shows how to use Florence to locate a frame in a video. The video is first split into frames, then each frame is processed to extract its embedding. Finally, the embeddings are used to find the most similar frames to a given question.")
