@@ -14,4 +14,3 @@ AZURE_COSMOSDB_CONNECTION_STRING = "AccountEndpoint=https://xxxxxxxx.documents.a
 
 # Azure App registration client id
 APP_CLIENT_ID=xxxxxxxx
-TENANT_ID=xxxxxxxx

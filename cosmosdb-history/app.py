@@ -11,7 +11,7 @@ from langchain.memory import ConversationBufferWindowMemory
 import openai, os, random
 import streamlit as st
 from dotenv import load_dotenv
-
+from datetime import datetime
 from prompts import CUSTOM_CHATBOT_PREFIX, CUSTOM_CHATBOT_SUFFIX
 from utils import get_token
 from base64 import b64decode
@@ -52,13 +52,15 @@ if login_token is not None:
     email = login_token["account"]["username"]
     st.write(f"Welcome, {username} ({email}) !")
 
+    current_dt = str(datetime.now().strftime("%Y%m%d_%H%M%S"))
+
     cosmos = CosmosDBChatMessageHistory(
         cosmos_endpoint=cosmos_endpoint,
         cosmos_database=cosmos_database,
         cosmos_container=cosmos_container,
         connection_string=cosmos_connection_string,
-        session_id="Agent-Test-Session" + str(random.randint(1, 1000)),
-        user_id= email
+        session_id=current_dt,
+        user_id=email
         )
     # prepare the cosmosdb instance
     cosmos.prepare_cosmos()
@@ -68,6 +70,12 @@ if login_token is not None:
 
     view_messages = st.expander("View the message contents in session state")
 
+    questions = [
+        "Tell me about important events in October 2023",
+        "Who won the Rugby World Cup in 2023?"
+    ]
+
+    questions
 
     llm = AzureChatOpenAI(
         deployment_name=os.getenv("OPENAI_API_MODEL"), 

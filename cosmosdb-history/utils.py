@@ -6,12 +6,11 @@ import streamlit as st
 load_dotenv()
 
 def get_token():
-    tenant_id = os.getenv('TENANT_ID')
     client_id = os.getenv('APP_CLIENT_ID')
     login_token = msal_authentication(
         auth={
             "clientId": client_id,
-            "authority": f"https://login.microsoftonline.com/{tenant_id}",
+            "authority": f"https://login.microsoftonline.com/common",
             "redirectUri": "/",
             "postLogoutRedirectUri": "/"
         }, # Corresponds to the 'auth' configuration for an MSAL Instance
