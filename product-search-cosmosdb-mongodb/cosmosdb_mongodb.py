@@ -1,50 +1,21 @@
-import os
-from urllib.parse import quote_plus
-from dotenv import load_dotenv
-from pymongo import MongoClient
-
-
-load_dotenv()
-
-username = os.getenv('COSMOSDB_MONGODB_USERNAME')
-password = os.getenv('COSMOSDB_MONGODB_PASSWORD')
-host = os.getenv('COSMOSDB_MONGODB_HOST')
-database_name = os.getenv('COSMOSDB_MONGODB_DATABASE')
-collection_name = os.getenv('COSMOSDB_MONGODB_COLLECTION')
-port = os.getenv('COSMOSDB_MONGODB_PORT')
-
-connection_string = f'mongodb+srv://{quote_plus(username)}:{quote_plus(password)}@{host}/?"tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"'
-client = MongoClient(connection_string)
-database = client[database_name]
-collection = database[collection_name]
-
-def create_mongo_objects(database_name, collection_name, index_name):
-    # Check if the database exists
-    existing_databases = client.list_database_names()
-    if database_name not in existing_databases:
-        # The database does not exist, so create it
-        client[database_name]
-
-    # Check if the collection exists in the database
-    if collection_name not in database.list_collection_names():
-        # The collection does not exist, so create it
-        collection = database[collection_name]
+def create_index(collection, index_name, dimension_size=1536, num_lists=100):
+    # check if index exists
+    existing_indexes = collection.index_information()
+    if index_name not in existing_indexes:
         # Define the index key, specifying the field "embedding" with a cosine similarity search type
         index_key = [("embedding", "cosmosSearch")]
         # Define the options for the index
         index_options = {
             "kind": "vector-ivf",   # Index type: vector-ivf
-            "numLists": 100,        # Number of lists (partitions) in the index
+            "numLists": num_lists,        # Number of lists (partitions) in the index
             "similarity": "COS",    # Similarity metric: Cosine similarity
-            "dimensions": 1536      # Number of dimensions in the vectors
+            "dimensions": dimension_size      # Number of dimensions in the vectors
         }
         # Create the index with the specified name and options
-        collection.create_index(index_key, name=index_name, cosmosSearchOptions=index_options)
+        index = collection.create_index(index_key, name=index_name, cosmosSearchOptions=index_options)
+        return index
 
-    return f"Success."
-
-
-def get_products():
+def get_products(collection):
     limit = 10
     products = []
     for product in collection.find().limit(limit):
@@ -52,14 +23,14 @@ def get_products():
         products.append(serialized_product)
     return products
 
-def count_products():
+def count_products(collection):
     c = collection.count_documents({})
     return c
 
-def insert_one(product):
+def insert_one(collection, product):
     return collection.insert_one(product)
 
-def insert_one_if_not_exists(product):
+def insert_one_if_not_exists(collection, product):
     product_id = str(product.get("_id"))
     
     if collection.count_documents({"_id": product_id}) == 0:
@@ -68,11 +39,10 @@ def insert_one_if_not_exists(product):
     else:
         return f"Product with _id {product_id} already exists, no insertion performed."
 
-
-def insert_many(products):
+def insert_many(collection, products):
     return collection.insert_many(products)
 
-def insert_many_if_not_exist(products):
+def insert_many_if_not_exist(collection, products):
     existing_product_ids = [str(product["_id"]) for product in collection.find({}, {"_id": 1})]
 
     new_products = []
@@ -88,7 +58,7 @@ def insert_many_if_not_exist(products):
         return "No new products to insert."
 
 
-def similar(query_vector, limit=5, min_score=0.8):
+def similar(collection, query_vector, limit=5, min_score=0.8):
 
     pipeline = [
             {

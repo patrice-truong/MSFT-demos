@@ -31,6 +31,10 @@ Embeddings are computed using Azure OpenAI text-embedding-ada-002
 ![Illustration!](h&m_dataset.png)
 
 - Copy .env template to .env
+- Create a Shared Access Signature for your storage account and copy the value to BLOB_TOKEN in your .env file
+
+![Illustration!](blob_sas_token.png)
+
 - Replace keys with your own values
 - Double check that you have deployed a model called "text-embedding-ada-002" in your Azure OpenAI account
 
