@@ -16,6 +16,9 @@ database = os.getenv("COSMOSDB_GREMLIN_DATABASE_NAME")
 collection = os.getenv("COSMOSDB_GREMLIN_COLLECTION_NAME")
 password = f'{os.getenv("COSMOSDB_GREMLIN_KEY")}'
 
+title = "Generate Gremlin code"
+st.set_page_config(page_title=title, page_icon="👻")
+
 def get_completion(context="", prompt="", max_tokens=400, model=os.getenv("OPENAI_MODEL")):
     response = openai.Completion.create(
         engine=model,
@@ -38,7 +41,7 @@ def get_completion(context="", prompt="", max_tokens=400, model=os.getenv("OPENA
 
 # ----------------------------------------------    
 
-title = "Query Cosmos DB for Gremlin"
+title = "Generate Gremlin code"
 styles = """
             <style>
             .green { color: green }
