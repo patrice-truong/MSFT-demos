@@ -1,4 +1,4 @@
-openai
+openai==0.27
 python-dotenv
 langchain
 azure-search-documents==11.4.0b9
@@ -12,3 +12,4 @@ plotly
 umap-learn
 nbformat
 moviepy
+msal_streamlit_authentication

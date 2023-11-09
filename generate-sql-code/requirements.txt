@@ -8,3 +8,4 @@ sqlmodel
 pymssql
 sqlalchemy==1.4.31
 uvicorn
+msal-streamlit-authentication

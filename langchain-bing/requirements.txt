@@ -1,6 +1,7 @@
 langchain
-openai
+openai==0.27.2
 pypdf
 streamlit
 python-dotenv
 azure-cosmos
+msal-streamlit-authentication

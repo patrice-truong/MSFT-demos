@@ -5,3 +5,4 @@ tiktoken==0.2.0
 langchain
 docx2txt
 gremlinpython==3.7.0
+msal-streamlit-authentication

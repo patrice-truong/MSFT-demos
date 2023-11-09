@@ -1,4 +1,4 @@
-openai
+openai==0.27
 moviepy
 azure-cognitiveservices-speech 
 python-dotenv
@@ -12,6 +12,7 @@ SpeechRecognition
 faiss-cpu
 gradio
 azure-cosmos
+msal_streamlit_authentication
 
 azure-mgmt-cognitiveservices 
 azure-mgmt-videoanalyzer

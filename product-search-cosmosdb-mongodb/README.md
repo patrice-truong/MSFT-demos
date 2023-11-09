@@ -35,6 +35,7 @@ Embeddings are computed using Azure OpenAI text-embedding-ada-002
 
 ![Illustration!](blob_sas_token.png)
 
+- Create an app registration in the Azure portal
 - Replace keys with your own values
 - Double check that you have deployed a model called "text-embedding-ada-002" in your Azure OpenAI account
 

@@ -7,4 +7,4 @@ COMPUTER_VISION_ENDPOINT=https://xxxxx.cognitiveservices.azure.com/
 
 BLOB_SAS_TOKEN="sp=xxxxxx"
 BLOB_STORAGE_ACCOUNT=xxxx
-
+AZURE_CLIENT_ID=xxxx

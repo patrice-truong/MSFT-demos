@@ -1,4 +1,4 @@
-import os, tiktoken, json, csv, time, openai
+import os, tiktoken, json, csv, time, openai, requests
 from sqlmodel import Field, SQLModel, create_engine
 
 import streamlit as st
@@ -45,63 +45,100 @@ def get_completion(question="", context="", max_tokens=400, model="gpt-35-turbo"
 
     return response['choices'][0]['text']
 
+def get_token():
+
+    from msal_streamlit_authentication import msal_authentication
+    from dotenv import load_dotenv
+
+    load_dotenv()
+
+    login_token = msal_authentication(
+        auth={
+            "clientId": os.getenv("AZURE_CLIENT_ID"),
+            "authority": f"https://login.microsoftonline.com/common",
+            "redirectUri": "/",
+            "postLogoutRedirectUri": "/"
+        }, 
+        cache={
+            "cacheLocation": "sessionStorage",
+            "storeAuthStateInCookie": False
+        }, 
+        login_request={
+            "scopes": ["openid"]
+        }
+    )
+    # st.write("token=", login_token)
+    return login_token
 
 # ---------------------------------
 
-title = "Query SQL in natural language"
-styles = """
-            <style>
-            .green { color: green }
-            .red { color: red }
-            .bold { font-weight: bold }
-            </style>
-            """
-st.markdown(styles, unsafe_allow_html=True)
-st.header(title)
+if __name__ == "__main__":
+    title = "Query SQL in natural language"
+    st.set_page_config(page_title=title)
+    styles = """
+                <style>
+                .green { color: green }
+                .red { color: red }
+                .bold { font-weight: bold }
+                </style>
+                """
+    st.markdown(styles, unsafe_allow_html=True)
+    st.header(title)
 
-st.write("#### Scenario")
-st.write("In this scenario, a user can describe the query in natural language. The query will then be converted to SQL code by Azure OpenAI and executed against a SQL database")
+    if "login_token" not in st.session_state:	 	 	 	 
+        st.session_state.login_token = None
+    
+    st.session_state.login_token = get_token()
+        
+    # ---------------------------------- #
+    if st.session_state.login_token is not None:
+        username = st.session_state.login_token["account"]["name"]
+        email = st.session_state.login_token["account"]["username"]
+        st.write(f"Welcome, {username} ({email}) !")
 
-st.write("#### Sample queries")
+        st.write("#### Scenario")
+        st.write("In this scenario, a user can describe the query in natural language. The query will then be converted to SQL code by Azure OpenAI and executed against a SQL database")
 
-engine = create_engine(
-    connection_string, connect_args={"autocommit": True}
-)
+        st.write("#### Sample queries")
 
-context = '''
-### SQL server tables, with their properties:
-#
-# SalesLT.ProductCategory(ProductCategoryID, ParentProductCategoryID, Name, rowguid, ModifiedDate)
-# SalesLT.SalesOrderDetail(SalesOrderID, SalesOrderDetailID, OrderQty, ProductID, UnitPrice, UnitPriceDiscount, LineTotal, rowguid, ModifiedDate)
-# SalesLT.Product(ProductID, Name, ProductNumber, Color, StandardCost, ListPrice, [Size], Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto, ThumbnailPhotoFileName, rowguid, ModifiedDate)
-#'''
-sample_queries = [
-    "How many products are there in each category?",
-    "What is the total sales for each product category, ordered by total sales?",
-    "Donne-moi le total des ventes de produits par catégorie, ordonné du plus grand au plus petit",
-    "Give me a list of the top 5 categories (id, name and count) where there are more than 10 products, from larger to smaller"
-]
-st.json(sample_queries, expanded = False)
-search_text = st.text_input("What's your interest?", placeholder="What's your interest?")
+        engine = create_engine(
+            connection_string, connect_args={"autocommit": True}
+        )
 
-#   
-if st.button("Run query"):
+        context = '''
+        ### SQL server tables, with their properties:
+        #
+        # SalesLT.ProductCategory(ProductCategoryID, ParentProductCategoryID, Name, rowguid, ModifiedDate)
+        # SalesLT.SalesOrderDetail(SalesOrderID, SalesOrderDetailID, OrderQty, ProductID, UnitPrice, UnitPriceDiscount, LineTotal, rowguid, ModifiedDate)
+        # SalesLT.Product(ProductID, Name, ProductNumber, Color, StandardCost, ListPrice, [Size], Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto, ThumbnailPhotoFileName, rowguid, ModifiedDate)
+        #'''
+        sample_queries = [
+            "How many products are there in each category?",
+            "What is the total sales for each product category, ordered by total sales?",
+            "Donne-moi le total des ventes de produits par catégorie, ordonné du plus grand au plus petit",
+            "Give me a list of the top 5 categories (id, name and count) where there are more than 10 products, from larger to smaller"
+        ]
+        st.json(sample_queries, expanded = False)
+        search_text = st.text_input("What's your interest?", placeholder="What's your interest?")
 
-    st.write("#### SQL code generated by Azure OpenAI")
-    stmt = get_completion(question=search_text, context=context)
-    with Session(engine) as session: 
-        st.code(stmt, language="sql")
-        result = session.exec(stmt).all()
+        #   
+        if st.button("Run query"):
 
-        # generate the HTML table using streamlit.components.v1.html
-        table = '<table><thead><tr>'
-        for column in result[0].keys():
-            table += f'<th>{column}</th>'
-        table += '</tr></thead><tbody>'
-        for row in result:
-            table += '<tr>'
-            for i in range(len(row)):
-                table += f'<td>{row[i]}</td>'
-            table += '</tr>'
-        table += '</tbody></table>'
-        st.markdown(table, unsafe_allow_html=True)
+            st.write("#### SQL code generated by Azure OpenAI")
+            stmt = get_completion(question=search_text, context=context)
+            with Session(engine) as session: 
+                st.code(stmt, language="sql")
+                result = session.exec(stmt).all()
+
+                # generate the HTML table using streamlit.components.v1.html
+                table = '<table><thead><tr>'
+                for column in result[0].keys():
+                    table += f'<th>{column}</th>'
+                table += '</tr></thead><tbody>'
+                for row in result:
+                    table += '<tr>'
+                    for i in range(len(row)):
+                        table += f'<td>{row[i]}</td>'
+                    table += '</tr>'
+                table += '</tbody></table>'
+                st.markdown(table, unsafe_allow_html=True)

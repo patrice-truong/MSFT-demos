@@ -27,7 +27,9 @@
 
 
 Tags/
-BIP/export/
+tmp/
+deploy/
+patoche/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

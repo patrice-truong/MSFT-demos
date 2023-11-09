@@ -8,3 +8,4 @@ azure-cosmos
 azure-storage-blob==12.14.1
 pymongo==3.11.3
 dnspython
+msal_streamlit_authentication
