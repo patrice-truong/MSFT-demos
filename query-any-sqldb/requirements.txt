@@ -1,0 +1,6 @@
+openai==0.28.1
+requests==2.31.0
+streamlit==1.28.0
+pymssql==2.2.10
+python-dotenv==0.17.1
+msal_streamlit_authentication

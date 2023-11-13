@@ -4,6 +4,7 @@ Demos for Microsoft products and technologies
 
 | Link                          | Description                                                                     | Illustration                                                        |
 |-------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| [Code](query-any-sqldb) [Demo](https://query-any-sqldb.azurewebsites.net/) | 2023-11-12:<br><b>Query any Azure SQL database</b>  | <img src="query-any-sqldb/query-any-sqldb.png" width="300" alt="query-any-sqldb">  |
 | [Code](video-frame-locator) [Demo](https://video-frame-locator-demo.azurewebsites.net/) | 2023-10-24:<br><b>Video frame locator</b> using Azure Computer Vision Florence 4  | <img src="video-frame-locator/video_frame_locator.jpg" width="300" alt="Video frame locator">  |
 | [Code](cosmosdb-history) [Demo](https://cosmosdb-history-demo.azurewebsites.net) | 2023-10-20:<br><b>Bing Chat</b> with conversation history stored in Cosmos DB for NoSQL  | <img src="cosmosdb-history/bing_chat_cosmosdb_history.png" width="300" alt="Bing Chat with Cosmos DB history">  |
 | [Code](langchain-bing) [Demo](https://langchain-bing-demo.azurewebsites.net) | 2023-10-20:<br>Use <b>Bing</b> in your Langchain chatbot | <img src="langchain-bing/langchain_bing.png" width="300" alt="Langchain with Bing">  |

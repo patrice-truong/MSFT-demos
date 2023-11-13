@@ -1,0 +1,13 @@
+OPENAI_API_BASE=https://xxxxxxx.openai.azure.com/
+OPENAI_API_KEY=xxxxxxx
+OPENAI_API_TYPE=azure
+OPENAI_API_VERSION=2023-05-15
+OPENAI_EMBEDDING_MODEL=text-embedding-ada-002
+OPENAI_CHAT_MODEL=gpt-35-turbo
+
+AZURE_SQL_USER=xxxxxxx
+AZURE_SQL_PASSWORD=xxxxxxx
+AZURE_SQL_ENDPOINT=xxxxxxx.database.windows.net
+AZURE_SQL_DATABASE=xxxxxxx
+
+AZURE_CLIENT_ID=xxxxxxx
