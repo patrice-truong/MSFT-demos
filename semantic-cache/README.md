@@ -1,5 +1,5 @@
 # Semantic Caching with Azure Cosmos DB for MongoDB vCore
-![Illustration!](cosmos-nosql-vector-search.png)
+![Illustration!](semantic-cache.png)
 ## Features
 - This notebook shows how to use Semantic caching with Azure Cosmos DB for MongoDB vCore
 
