@@ -1,0 +1,13 @@
+python-dotenv
+streamlit
+openai
+azure-cosmos
+
+langchain_community
+langchain
+langchain_openai
+pymongo
+dnspython
+tenacity
+ipykernel
+tiktoken

@@ -4,6 +4,7 @@ Demos for Microsoft products and technologies
 
 | Link                          | Description                                                                     | Illustration                                                        |
 |-------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| [Code](cosmos-nosql-vector-search) | 2024-06-14:<br><b>Vector search using Azure Cosmos DB for NoSQL</b>  | <img src="cosmos-nosql-vector-search/cosmos-nosql-vector-search.png" width="300" alt="cosmos-nosql-vector-search">  |
 | [Code](query-any-sqldb) [Demo](https://query-any-sqldb.azurewebsites.net/) | 2023-11-12:<br><b>Query any Azure SQL database</b>  | <img src="query-any-sqldb/query-any-sqldb.png" width="300" alt="query-any-sqldb">  |
 | [Code](video-frame-locator) [Demo](https://video-frame-locator-demo.azurewebsites.net/) | 2023-10-24:<br><b>Video frame locator</b> using Azure Computer Vision Florence 4  | <img src="video-frame-locator/video_frame_locator.jpg" width="300" alt="Video frame locator">  |
 | [Code](cosmosdb-history) [Demo](https://cosmosdb-history-demo.azurewebsites.net) | 2023-10-20:<br><b>Bing Chat</b> with conversation history stored in Cosmos DB for NoSQL  | <img src="cosmosdb-history/bing_chat_cosmosdb_history.png" width="300" alt="Bing Chat with Cosmos DB history">  |

@@ -1,0 +1,9 @@
+python-dotenv
+tiktoken
+openai
+tenacity
+ipykernel
+scikit-learn
+azure-cosmos
+azure-identity
+pandas
