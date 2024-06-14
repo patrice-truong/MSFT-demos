@@ -1,0 +1,13 @@
+python-dotenv
+tiktoken
+openai
+tenacity
+ipykernel
+scikit-learn
+azure-cosmos
+azure-identity
+langchain_community
+langchain
+langchain_openai
+pymongo
+dnspython
