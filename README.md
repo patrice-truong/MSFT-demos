@@ -4,6 +4,7 @@ Demos for Microsoft products and technologies
 
 | Link                          | Description                                                                     | Illustration                                                        |
 |-------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| [Code](autogen-cosmosdb-retrieve-user-proxy-agent) | 2024-07-07:<br><b>Azure Cosmos DB RetrieverUserProxyAgent for Microsoft Autogen</b>  | <img src="autogen-cosmosdb-retrieve-user-proxy-agent/autogen-cosmosdb-retrieve-user-proxy-agent.png" width="300" alt="autogen-cosmosdb-retrieve-user-proxy-agent">  |
 | [Code](semantic-cache) | 2024-06-14:<br><b>Semantic Caching with Azure Cosmos DB for MongoDB vCore</b>  | <img src="semantic-cache/semantic-cache.png" width="300" alt="semantic-cache">  |
 | [Code](cosmos-nosql-vector-search) | 2024-06-14:<br><b>Vector search using Azure Cosmos DB for NoSQL</b>  | <img src="cosmos-nosql-vector-search/cosmos-nosql-vector-search.png" width="300" alt="cosmos-nosql-vector-search">  |
 | [Code](query-any-sqldb) [Demo](https://query-any-sqldb.azurewebsites.net/) | 2023-11-12:<br><b>Query any Azure SQL database</b>  | <img src="query-any-sqldb/query-any-sqldb.png" width="300" alt="query-any-sqldb">  |
@@ -15,3 +16,6 @@ Demos for Microsoft products and technologies
 | [Code](chat-on-video) [Demo](https://chatvideo-demo.azurewebsites.net/)         | 2023-10-17:<br><b>Chat on your videos</b> with Azure OpenAI and Azure Cosmos DB for NoSQL             | <img src="chat-on-video/chat_on_video.png" width="300" alt="Chat on your video">  |
 | [Code](generate-gremlin-code) [Demo](https://generate-gremlin-demo.azurewebsites.net) | 2023-10-17:<br><b>Generate Gremlin</b> code with Azure Cosmos DB for Apache Gremlin and Azure OpenAI  | <img src="generate-gremlin-code/generate_gremlin_code.png" width="300" alt="Generate Gremlin code">  |
 | [Code](fraud-detection)       | 2023-10-17:<br><b>Fraud detection</b> using Azure Computer Vision                                     | <img src="fraud-detection/fraud_detection.png" width="300" alt="Fraud detection">  |
+
+
+

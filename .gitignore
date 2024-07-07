@@ -319,3 +319,7 @@ __pycache__/
 
 # End of https://www.gitignore.io/api/visualstudio
 TestsWeb/debug.log
+
+venv.ps1
+*.code-workspace
+run.cmd
