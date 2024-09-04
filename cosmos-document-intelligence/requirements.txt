@@ -1,0 +1,8 @@
+openai
+python_dotenv
+ipykernel
+azure-cosmos
+azure-ai-documentintelligence 
+azure-ai-formrecognizer
+azure-storage-blob
+azure-identity
