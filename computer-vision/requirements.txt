@@ -1,0 +1,7 @@
+requests
+pillow
+ollama
+azure-ai-inference
+python-dotenv
+azure-identity
+openai

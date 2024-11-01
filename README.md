@@ -4,6 +4,7 @@ Demos for Microsoft products and technologies
 
 | Link                          | Description                                                                     | Illustration                                                        |
 |-------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| [Code](computer-vision) | 2024-11-01:<br><b>Jupyter notebooks comparing Computer Vision models</b>  | <img src="computer-vision/computer-vision.png" width="300" alt="computer-vision">  |
 | [Code](autogen-cosmosdb-retrieve-user-proxy-agent) | 2024-07-07:<br><b>Azure Cosmos DB RetrieverUserProxyAgent for Microsoft Autogen</b>  | <img src="autogen-cosmosdb-retrieve-user-proxy-agent/autogen-cosmosdb-retrieve-user-proxy-agent.png" width="300" alt="autogen-cosmosdb-retrieve-user-proxy-agent">  |
 | [Code](semantic-cache) | 2024-06-14:<br><b>Semantic Caching with Azure Cosmos DB for MongoDB vCore</b>  | <img src="semantic-cache/semantic-cache.png" width="300" alt="semantic-cache">  |
 | [Code](cosmos-nosql-vector-search) | 2024-06-14:<br><b>Vector search using Azure Cosmos DB for NoSQL</b>  | <img src="cosmos-nosql-vector-search/cosmos-nosql-vector-search.png" width="300" alt="cosmos-nosql-vector-search">  |
